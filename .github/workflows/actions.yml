@@ -26,9 +26,9 @@ jobs:
         server_address: smtp.sendgrid.net
         server_port: 465
         username: apikey
-        password: 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
+        password: ${{ secrets.SENDGRID_API_KEY }}
         subject: Cambios subidos a rama ${{ github.ref_name }}
-        to: juan.alonso@iteso.mx
+        to: ${{ secrets.EMAIL_RECIPIENT }}
         from: juan.alonso@iteso.mx
         body: |
           Hola,
