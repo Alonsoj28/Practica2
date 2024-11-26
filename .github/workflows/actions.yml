@@ -22,7 +22,7 @@ jobs:
         -H "Content-Type: application/json" \
         -d "{
           \"apikey\": \"$ELASTICEMAIL_API_KEY\",
-          \"from\": \"alonsoglezjc@gmail.com\",
+          \"from\": \"juan.alonso@iteso.mx\",
           \"to\": \"juan.alonso@iteso.mx\",
           \"subject\": \"Cambios subidos a rama ${{ github.ref_name }}\",
           \"bodyHtml\": \"<p>Hola,</p><p>Se han subido cambios a la rama ${{ github.ref_name }}.</p><p>Atentamente,<br>Juan Alonso & Carlos Calzada</p>\"
