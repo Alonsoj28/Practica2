@@ -19,7 +19,7 @@ jobs:
         curl -X POST https://api.elasticemail.com/v4/emails \
         -H "Content-Type: application/json" \
         -d '{
-          "apikey": "98E01DFF3D4C1BAFDF89E0E801431CC12F7353E8417093A5467D345763047472B77785EFD4446315858BB616E883FCB4",
+          "apikey": "62C21C8E66EA3CD5243308F696DBFCF15ABA",
           "from": "alonsoglezjc@gmail.com",
           "to": "juan.alonso@iteso.mx",
           "subject": "Cambios subidos a rama '${{ github.ref_name }}'",
