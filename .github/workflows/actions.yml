@@ -21,4 +21,4 @@ jobs:
           -d "to=juan.alonso@iteso.mx" \
           -d "subject=Cambios subidos a rama ${{ github.ref_name }}" \
           -d "bodyHtml=<p>Hola,</p><p>Se han subido cambios a la rama ${{ github.ref_name }}.</p><p>Atentamente,<br>Juan Alonso & Carlos Calzada</p>" \
-          -d "apikey=0839DE7BD465B8BE666E623904D478C6127D"
+          -d "apikey=98E01DFF3D4C1BAFDF89E0E801431CC12F7353E8417093A5467D345763047472B77785EFD4446315858BB616E883FCB4"
