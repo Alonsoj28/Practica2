@@ -16,14 +16,36 @@ jobs:
 
     - name: Send email notification
       env:
-        ELASTICEMAIL_API_KEY: ${{ secrets.ELASTICEMAIL_API_KEY }}
+        SMTP_USERNAME: ${{ secrets.SMTP_USERNAME }}
+        SMTP_PASSWORD: ${{ secrets.SMTP_PASSWORD }}
       run: |
-        curl -X POST https://api.elasticemail.com/v4/emails \
-        -H "Content-Type: application/json" \
-        -d "{
-          \"apikey\": \"$ELASTICEMAIL_API_KEY\",
-          \"from\": \"juan.alonso@iteso.mx\",
-          \"to\": \"juan.alonso@iteso.mx\",
-          \"subject\": \"Cambios subidos a rama ${{ github.ref_name }}\",
-          \"bodyHtml\": \"<p>Hola,</p><p>Se han subido cambios a la rama ${{ github.ref_name }}.</p><p>Atentamente,<br>Juan Alonso & Carlos Calzada</p>\"
-        }"
+        sudo apt-get update
+        sudo apt-get install -y msmtp msmtp-mta
+
+        # Create msmtp configuration file
+        echo "defaults
+        auth           on
+        tls            on
+        tls_trust_file /etc/ssl/certs/ca-certificates.crt
+        logfile        ~/.msmtp.log
+
+        account        elasticemail
+        host           smtp.elasticemail.com
+        port           2525
+        from           alonsoglezjc@gmail.com
+        user           $SMTP_USERNAME
+        password       $SMTP_PASSWORD
+
+        account default : elasticemail" > ~/.msmtprc
+
+        chmod 600 ~/.msmtprc
+
+        # Send email
+        echo "Subject: Cambios subidos a rama ${{ github.ref_name }}
+        From: alonsoglezjc@gmail.com
+        To: juan.alonso@iteso.mx
+        Content-Type: text/html
+
+        <p>Hola,</p>
+        <p>Se han subido cambios a la rama ${{ github.ref_name }}.</p>
+        <p>Atentamente,<br>Juan Alonso & Carlos Calzada</p>" | msmtp -a default juan.alonso@iteso.mx
