@@ -29,7 +29,7 @@ jobs:
         password: ${{ secrets.SENDGRID_API_KEY }}
         subject: Cambios subidos a rama ${{ github.ref_name }}
         to: ${{ secrets.EMAIL_RECIPIENT }}
-        from: juan.alonso@iteso.mx
+        from: ${{ secrets.EMAIL_RECIPIENT }}
         body: |
           Hola,
           
