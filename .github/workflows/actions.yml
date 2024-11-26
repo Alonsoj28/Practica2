@@ -16,9 +16,9 @@ jobs:
 
     - name: Send email notification
       run: |
-        curl -X POST https://api.elasticemail.com/v4/emails
-        -d "from=alonsoglezjc@gmail.com"
-        -d "to=juan.alonso@iteso.mx"
-        -d "subject=Cambios subidos a rama ${{ github.ref_name }}"
-        -d "bodyHtml=<p>Hola,</p><p>Se han subido cambios a la rama ${{ github.ref_name }}.</p><p>Atentamente,<br>Juan Alonso & Carlos Calzada</p>"
-        -d "apikey=0839DE7BD465B8BE666E623904D478C6127D"
+        curl -X POST https://api.elasticemail.com/v4/emails \
+          -d "from=alonsoglezjc@gmail.com" \
+          -d "to=juan.alonso@iteso.mx" \
+          -d "subject=Cambios subidos a rama ${{ github.ref_name }}" \
+          -d "bodyHtml=<p>Hola,</p><p>Se han subido cambios a la rama ${{ github.ref_name }}.</p><p>Atentamente,<br>Juan Alonso & Carlos Calzada</p>" \
+          -d "apikey=${{ secrets.ELASTIC_EMAIL_API_KEY }}"
