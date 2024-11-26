@@ -25,3 +25,4 @@ jobs:
           "subject": "Cambios subidos a rama '${{ github.ref_name }}'",
           "bodyHtml": "<p>Hola,</p><p>Se han subido cambios a la rama '${{ github.ref_name }}'.</p><p>Atentamente,<br>Juan Alonso & Carlos Calzada</p>"
         }'
+
