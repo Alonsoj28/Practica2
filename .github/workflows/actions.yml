@@ -32,7 +32,7 @@ jobs:
         account        elasticemail
         host           smtp.elasticemail.com
         port           2525
-        from           alonsoglezjc@gmail.com
+        from           juan.alonso@iteso.mx
         user           $SMTP_USERNAME
         password       $SMTP_PASSWORD
 
@@ -42,7 +42,7 @@ jobs:
 
         # Send email
         echo "Subject: Cambios subidos a rama ${{ github.ref_name }}
-        From: alonsoglezjc@gmail.com
+        From: juan.alonso@iteso.mx
         To: juan.alonso@iteso.mx
         Content-Type: text/html
 
