@@ -15,14 +15,15 @@ jobs:
       uses: actions/checkout@v3
 
     - name: Send email notification
+      env:
+        ELASTICEMAIL_API_KEY: ${{ secrets.ELASTICEMAIL_API_KEY }}
       run: |
         curl -X POST https://api.elasticemail.com/v4/emails \
         -H "Content-Type: application/json" \
-        -d '{
-          "apikey": "62C21C8E66EA3CD5243308F696DBFCF15ABA",
-          "from": "alonsoglezjc@gmail.com",
-          "to": "juan.alonso@iteso.mx",
-          "subject": "Cambios subidos a rama '${{ github.ref_name }}'",
-          "bodyHtml": "<p>Hola,</p><p>Se han subido cambios a la rama '${{ github.ref_name }}'.</p><p>Atentamente,<br>Juan Alonso & Carlos Calzada</p>"
-        }'
-
+        -d "{
+          \"apikey\": \"$ELASTICEMAIL_API_KEY\",
+          \"from\": \"alonsoglezjc@gmail.com\",
+          \"to\": \"juan.alonso@iteso.mx\",
+          \"subject\": \"Cambios subidos a rama ${{ github.ref_name }}\",
+          \"bodyHtml\": \"<p>Hola,</p><p>Se han subido cambios a la rama ${{ github.ref_name }}.</p><p>Atentamente,<br>Juan Alonso & Carlos Calzada</p>\"
+        }"
