@@ -24,11 +24,11 @@ jobs:
       uses: dawidd6/action-send-mail@v3
       with:
         server_address: smtp.sendgrid.net
-        server_port: 587
+        server_port: 465
         username: apikey
-        password: ${{ secrets.SENDGRID_API_KEY }}
+        password: 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
         subject: Cambios subidos a rama ${{ github.ref_name }}
-        to: ${{ secrets.EMAIL_RECIPIENT }}
+        to: juan.alonso@iteso.mx
         from: juan.alonso@iteso.mx
         body: |
           Hola,
