@@ -14,6 +14,12 @@ jobs:
     - name: Check out the code
       uses: actions/checkout@v3
 
+    - name: Check environment variables
+      run: |
+        echo "SENDGRID_API_KEY: ${{ secrets.SENDGRID_API_KEY }}"
+        echo "EMAIL_RECIPIENT: ${{ secrets.EMAIL_RECIPIENT }}"
+        echo "From: juan.alonso@iteso.mx"
+        
     - name: Send email notification
       uses: dawidd6/action-send-mail@v3
       with:
@@ -24,9 +30,9 @@ jobs:
         subject: Cambios subidos a rama ${{ github.ref_name }}
         to: ${{ secrets.EMAIL_RECIPIENT }}
         from: juan.alonso@iteso.mx
-        body: >
+        body: |
           Hola,
-
+          
           Se han subido cambios a la rama ${{ github.ref_name }}.
 
           Atentamente,
