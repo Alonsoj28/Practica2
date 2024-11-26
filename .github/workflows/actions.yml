@@ -18,7 +18,7 @@ jobs:
       run: |
         echo "SENDGRID_API_KEY: ${{ secrets.SENDGRID_API_KEY }}"
         echo "EMAIL_RECIPIENT: ${{ secrets.EMAIL_RECIPIENT }}"
-        echo "From: juan.alonso@iteso.mx"
+        echo "From: ${{ secrets.EMAIL_RECIPIENT }}"
         
     - name: Send email notification
       uses: dawidd6/action-send-mail@v3
