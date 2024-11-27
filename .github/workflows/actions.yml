@@ -11,41 +11,18 @@ jobs:
   send-email:
     runs-on: ubuntu-latest
     steps:
-    - name: Check out the code
-      uses: actions/checkout@v3
-
-    - name: Send email notification
-      env:
-        SMTP_USERNAME: ${{ secrets.SMTP_USERNAME }}
-        SMTP_PASSWORD: ${{ secrets.SMTP_PASSWORD }}
-      run: |
-        sudo apt-get update
-        sudo apt-get install -y msmtp msmtp-mta
-
-        # Create msmtp configuration file
-        echo "defaults
-        auth           on
-        tls            on
-        tls_trust_file /etc/ssl/certs/ca-certificates.crt
-        logfile        ~/.msmtp.log
-
-        account        elasticemail
-        host           smtp.elasticemail.com
-        port           2525
-        from           juan.alonso@iteso.mx
-        user           $SMTP_USERNAME
-        password       $SMTP_PASSWORD
-
-        account default : elasticemail" > ~/.msmtprc
-
-        chmod 600 ~/.msmtprc
-
-        # Send email
-        echo "Subject: Cambios subidos a rama ${{ github.ref_name }}
-        From: juan.alonso@iteso.mx
-        To: juan.alonso@iteso.mx
-        Content-Type: text/html
-
-        <p>Hola,</p>
-        <p>Se han subido cambios a la rama ${{ github.ref_name }}.</p>
-        <p>Atentamente,<br>Juan Alonso & Carlos Calzada</p>" | msmtp -a default juan.alonso@iteso.mx
+    - name: Send Mail
+      uses: dawidd6/action-send-mail@v3
+      with:
+        server_address: smtp.elasticemail.com
+        server_port: 2525
+        username: ${{secrets.SMTP_USERNAME}}
+        password: ${{secrets.SMTP_PASSWORD}}
+        subject: Cambios subidos a rama ${{github.ref_name}}
+        body: |
+          <p>Hola,</p>
+          <p>Se han subido cambios a la rama ${{github.ref_name}}.</p>
+          <p>Atentamente,<br>Juan Alonso & Carlos Calzada</p>
+        to: juan.alonso@iteso.mx
+        from: juan.alonso@iteso.mx
+        content_type: text/html
